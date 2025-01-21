@@ -1,5 +1,6 @@
 package com.example.broadcastapp
 
+import android.content.Intent
 import android.content.IntentFilter
 import android.net.Uri
 import android.os.Bundle
@@ -28,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         playButton = findViewById(R.id.btnPlay)
 
         // Set video path (From res/raw/sample_video.mp4)
-        val videoPath = "android.resource://$packageName/${R.raw.sample_video}"
+        val videoPath = "android.resource://$packageName/${R.raw.demo}"
         val uri: Uri = Uri.parse(videoPath)
         videoView.setVideoURI(uri)
 
