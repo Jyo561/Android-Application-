@@ -1,5 +1,6 @@
 package com.example.broadcastapp
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.content.IntentFilter
 import android.net.Uri
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var seekBar: SeekBar
     private lateinit var playButton: Button
     private val handler = Handler(Looper.getMainLooper())
+    private val stopVideoHandler = Handler(Looper.getMainLooper())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +41,7 @@ class MainActivity : AppCompatActivity() {
                 videoView.start()
                 playButton.text = "Pause"
                 updateSeekBar()  // Start updating SeekBar
+                startVideoTimer()
             } else {
                 videoView.pause()
                 playButton.text = "Play"
@@ -85,7 +88,31 @@ class MainActivity : AppCompatActivity() {
             }
         }, 500)
     }
+    
+    private fun startVideoTimer() {
+        stopVideoHandler.postDelayed({
+            videoView.stopPlayback() // Stop video
+            videoView.visibility = VideoView.GONE // Hide video
+            seekBar.visibility = SeekBar.GONE // Hide SeekBar
+            playButton.visibility = Button.GONE // Hide play button
 
+            // Show "Time Expired" dialog
+            showTimeExpiredDialog()
+        }, 10000) // 10 seconds timer
+    }
+
+    // Function to show AlertDialog when time expires
+    private fun showTimeExpiredDialog() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Time Expired")
+        builder.setMessage("The video time has ended.")
+        builder.setPositiveButton("OK") { dialog, _ ->
+            dialog.dismiss()
+        }
+        builder.setCancelable(false)
+        builder.show()
+    }
+    
     override fun onDestroy() {
         unregisterReceiver(airplaneModeReceiver)
         handler.removeCallbacksAndMessages(null)  // Stop SeekBar updates
