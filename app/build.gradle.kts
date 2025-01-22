@@ -37,7 +37,7 @@ android {
 
 dependencies {
     implementation("com.google.android.gms:play-services-instantapps:17.0.0")
-    implementation("com.google.android.gms:play-services-auth:20.0.0" // For Smart Lock
+    implementation("com.google.android.gms:play-services-auth:20.0.0") // For Smart Lock
     implementation("com.google.android.gms:play-services-games:21.0.0")
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.7.0")
