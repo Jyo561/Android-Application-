@@ -28,10 +28,16 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v2
 
+      # Install Java XML bindings module (required for sdkmanager)
+      - name: Install Java XML bindings
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libxml2
+
       # Install Google Play Instant Development SDK
       - name: Install Google Play Instant SDK
         run: |
-          yes | $ANDROID_HOME/tools/bin/sdkmanager "extras;google;instantapps"
+          yes | $ANDROID_HOME/tools/bin/sdkmanager --sdk_root=$ANDROID_HOME "extras;google;instantapps"
 
       # Build the app bundle
       - name: Build App Bundle
