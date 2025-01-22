@@ -34,6 +34,10 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libxml2
 
+      - name: Install JAXB
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libjaxb-api-java
       # Install Google Play Instant Development SDK
       - name: Install Google Play Instant SDK
         run: |
