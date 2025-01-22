@@ -28,16 +28,13 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v2
 
-      # Install Java XML bindings module (required for sdkmanager)
-      - name: Install Java XML bindings
+      # Install JAXB dependencies explicitly
+      - name: Install JAXB dependencies
         run: |
-          sudo apt-get update
-          sudo apt-get install -y libxml2
+          wget https://repo1.maven.org/maven2/javax/xml/bind/jaxb-api/2.3.1/jaxb-api-2.3.1.jar -O /tmp/jaxb-api.jar
+          sudo mkdir -p /usr/share/java
+          sudo cp /tmp/jaxb-api.jar /usr/share/java/
 
-      - name: Install JAXB
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libjaxb-api-java
       # Install Google Play Instant Development SDK
       - name: Install Google Play Instant SDK
         run: |
@@ -54,3 +51,4 @@ jobs:
         with:
           name: app-bundle
           path: app/build/outputs/bundle/release/app-release.aab
+
