@@ -37,7 +37,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build Instant App
-        run: ./gradlew assembleInstant
+        run: ./gradlew :instantapp:assembleRelease
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
