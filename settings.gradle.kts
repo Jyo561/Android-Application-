@@ -14,4 +14,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Broadcast App"
-include(":app")
+include(":app",":instantapp")
