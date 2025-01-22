@@ -1,6 +1,6 @@
 plugins {
     id("com.android.application")
-    id("com.android.instantapp")
+    //id("com.android.instantapp")
     id("org.jetbrains.kotlin.android")
 }
 
